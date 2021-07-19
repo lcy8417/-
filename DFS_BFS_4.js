@@ -5,16 +5,12 @@ function solution(tickets) {
     const ch = Array.from({ length: len }, () => 0);
     tickets.sort((a, b) => {
         if (a[0] === b[0]) {
-            for (let i = 0; i < a[1].length; i++) {
-                if (a[1][i] !== b[1][i]) return a[1][i].charCodeAt(0) - b[1][i].charCodeAt(0);
-            }
-        } else {
-            for (let i = 0; i < a[1].length; i++) {
-                if (a[0][i] !== b[0][i]) return a[0][i].charCodeAt(0) - b[0][i].charCodeAt(0);
-            }
-        }
+            if (a[1] < b[1]) return -1
+            else return 1;
+        } else if (a[0] < b[0]) return -1;
+        else return 1;
     });
-
+    console.log(tickets);
     function go(x, cur) {
         if (x > len || answer.length) return;
         if (tmp.length === len + 1) {
